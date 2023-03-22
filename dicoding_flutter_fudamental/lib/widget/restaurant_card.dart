@@ -2,6 +2,7 @@ import 'package:dicoding_flutter_fudamental/model/restaurant.dart';
 import 'package:dicoding_flutter_fudamental/page/restaurant_detail.page.dart';
 import 'package:dicoding_flutter_fudamental/style/colors.dart';
 import 'package:dicoding_flutter_fudamental/style/font.dart';
+import 'package:dicoding_flutter_fudamental/util/util.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantCard extends StatelessWidget {
@@ -18,7 +19,7 @@ class RestaurantCard extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.pushNamed(context, RestaurantDetailPage.routeName,
-                arguments: restaurant);
+                arguments: restaurant.id);
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +30,8 @@ class RestaurantCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(restaurant.pictureId)),
+                        image: NetworkImage(
+                            "$baseImagePath${restaurant.pictureId}")),
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),

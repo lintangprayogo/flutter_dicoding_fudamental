@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dicoding_flutter_fudamental/model/menu_result.dart';
 
 class Restaurant {
@@ -9,7 +7,7 @@ class Restaurant {
   final String city;
   final double rating;
   final String description;
-  final MenuResult menu;
+  final MenuResult? menu;
 
   const Restaurant(
       {required this.id,
@@ -27,5 +25,7 @@ class Restaurant {
       rating: data['rating'].toDouble(),
       pictureId: data['pictureId'],
       description: data['description'],
-      menu: MenuResult.fromJson(data["menus"]));
+      menu: data['menus'] == null
+          ? const MenuResult(foods: [], drinks: [])
+          : MenuResult.fromJson(data['menus']));
 }
