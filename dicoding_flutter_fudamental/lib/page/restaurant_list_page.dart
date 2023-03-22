@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:dicoding_flutter_fudamental/model/restaurant.dart';
 import 'package:dicoding_flutter_fudamental/model/restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/page/restaurant_search_page.dart';
 import 'package:dicoding_flutter_fudamental/provider/restaurant_list_provider.dart';
 import 'package:dicoding_flutter_fudamental/provider/result_state.dart';
+import 'package:dicoding_flutter_fudamental/widget/error_widget.dart';
 import 'package:dicoding_flutter_fudamental/widget/restaurant_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,39 +20,23 @@ class RestaurantListPage extends StatefulWidget {
 }
 
 class _RestaurantListPageState extends State<RestaurantListPage> {
-  final TextEditingController _controller = TextEditingController();
-
-  String keyword = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Daftar Restaurant"),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              onChanged: (value) {
-                setState(() {
-                  keyword = value;
-                });
+        appBar: AppBar(
+          title: const Text("Daftar Restaurant"),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, RestaurantSearchPage.routeName);
               },
-              controller: _controller,
-              decoration: const InputDecoration(
-                  labelText: "Temukan",
-                  hintText: "Temukan Restaurant",
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+              child: const Icon(
+                Icons.search,
+              ),
             ),
-          ),
-          Expanded(child: _buildList()),
-        ],
-      ),
-    );
+          ],
+        ),
+        body: _buildList());
   }
 
   List<Restaurant> parseJson(String? json) {
@@ -79,7 +65,11 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
           },
         );
       } else if (value.state == ResultState.error) {
-        return Center(child: Text(value.message));
+        return ErrorMessage(
+            message: value.message,
+            tryAgain: () {
+              value.restaurantList();
+            });
       } else {
         return const Center(child: Text("Tidak Ada Data"));
       }

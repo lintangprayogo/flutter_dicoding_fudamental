@@ -1,27 +1,32 @@
 import 'package:dicoding_flutter_fudamental/api/api_service.dart';
-import 'package:dicoding_flutter_fudamental/model/restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/model/detail_restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/model/search_restaurant_result.dart';
 import 'package:dicoding_flutter_fudamental/provider/result_state.dart';
 import 'package:flutter/widgets.dart';
 
-class RestaurantListProvider extends ChangeNotifier {
+class RestaurantSearchProvider extends ChangeNotifier {
   late String _message;
-  late RestaurantResult _restaurantResult;
-  late ResultState _state;
+  late SearchRestaurantResult _restaurantResult;
+  ResultState _state = ResultState.idle;
   final ApiService apiservice;
 
-  RestaurantListProvider({required this.apiservice}) {
-    restaurantList();
-  }
+  RestaurantSearchProvider({required this.apiservice});
 
   String get message => _message;
-  RestaurantResult get restaurantResult => _restaurantResult;
+  SearchRestaurantResult get restaurantResult => _restaurantResult;
   ResultState get state => _state;
 
-  Future<dynamic> restaurantList() async {
+  Future<dynamic> searchRestaurant(String search) async {
     try {
+      if (search.isEmpty) {
+        _state = ResultState.idle;
+        notifyListeners();
+        return _restaurantResult = const SearchRestaurantResult(
+            restaurants: [], founded: 0, error: false);
+      }
       _state = ResultState.loading;
       notifyListeners();
-      final result = await apiservice.getRestaurantList();
+      final result = await apiservice.searchRestaurant(search);
       if (result.restaurants.isEmpty) {
         _state = ResultState.noData;
         notifyListeners();

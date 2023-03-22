@@ -4,21 +4,23 @@ import 'package:dicoding_flutter_fudamental/provider/result_state.dart';
 import 'package:dicoding_flutter_fudamental/style/colors.dart';
 import 'package:dicoding_flutter_fudamental/style/font.dart';
 import 'package:dicoding_flutter_fudamental/util/util.dart';
+import 'package:dicoding_flutter_fudamental/widget/error_widget.dart';
 import 'package:dicoding_flutter_fudamental/widget/menu_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
   static const routeName = "/restaurantDetail";
+  final String id;
 
-  const RestaurantDetailPage({super.key});
+  const RestaurantDetailPage({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
-        child: _buildResult(),
+        child: _buildResult(id),
       ),
     );
   }
@@ -183,14 +185,18 @@ Widget _buildContent(Restaurant restaurant, BuildContext context) {
   );
 }
 
-Widget _buildResult() {
+Widget _buildResult(String id) {
   return Consumer<RestaurantDetailProvider>(builder: (context, value, child) {
     if (value.state == ResultState.loading) {
       return const Center(child: CircularProgressIndicator());
     } else if (value.state == ResultState.hasData) {
       return _buildContent(value.detailRestaurantResult.restaurant, context);
     } else if (value.state == ResultState.error) {
-      return Center(child: Text(value.message));
+      return ErrorMessage(
+          message: value.message,
+          tryAgain: () {
+            value.getDetailRestaurant(id);
+          });
     } else {
       return const Center(child: Text("Tidak Ada Data"));
     }
