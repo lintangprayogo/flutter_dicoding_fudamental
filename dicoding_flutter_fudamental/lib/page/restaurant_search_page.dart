@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:dicoding_flutter_fudamental/model/restaurant.dart';
-import 'package:dicoding_flutter_fudamental/model/restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/data/model/restaurant.dart';
+import 'package:dicoding_flutter_fudamental/data/model/restaurant_result.dart';
 import 'package:dicoding_flutter_fudamental/provider/restaurant_search_provider.dart';
 import 'package:dicoding_flutter_fudamental/provider/result_state.dart';
 import 'package:dicoding_flutter_fudamental/widget/error_widget.dart';

@@ -1,8 +1,8 @@
-import 'package:dicoding_flutter_fudamental/model/restaurant.dart';
+import 'package:dicoding_flutter_fudamental/data/model/restaurant.dart';
 import 'package:dicoding_flutter_fudamental/provider/restaurant_detail_provider.dart';
 import 'package:dicoding_flutter_fudamental/provider/result_state.dart';
-import 'package:dicoding_flutter_fudamental/style/colors.dart';
-import 'package:dicoding_flutter_fudamental/style/font.dart';
+import 'package:dicoding_flutter_fudamental/common/colors.dart';
+import 'package:dicoding_flutter_fudamental/common/font.dart';
 import 'package:dicoding_flutter_fudamental/util/util.dart';
 import 'package:dicoding_flutter_fudamental/widget/error_widget.dart';
 import 'package:dicoding_flutter_fudamental/widget/menu_list_tile.dart';
@@ -63,30 +63,13 @@ Widget _buildContent(Restaurant restaurant, BuildContext context) {
     slivers: [
       SliverAppBar(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
-        flexibleSpace: Stack(
-          children: [
-            Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.3,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image:
-                          NetworkImage("$baseImagePath${restaurant.pictureId}"),
-                      fit: BoxFit.fill)),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset(
-                    'assets/icons/btn_wishlist.png',
-                    width: 40,
-                  ),
-                ],
-              ),
-            ),
-          ],
+        flexibleSpace: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.3,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage("$baseImagePath${restaurant.pictureId}"),
+                  fit: BoxFit.fill)),
         ),
       ),
       SliverList(

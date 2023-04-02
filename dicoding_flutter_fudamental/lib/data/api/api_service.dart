@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dicoding_flutter_fudamental/model/detail_restaurant_result.dart';
-import 'package:dicoding_flutter_fudamental/model/restaurant_result.dart';
-import 'package:dicoding_flutter_fudamental/model/search_restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/data/model/detail_restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/data/model/restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/data/model/search_restaurant_result.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {

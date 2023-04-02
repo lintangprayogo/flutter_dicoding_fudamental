@@ -1,4 +1,4 @@
-import 'package:dicoding_flutter_fudamental/style/colors.dart';
+import 'package:dicoding_flutter_fudamental/common/colors.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 

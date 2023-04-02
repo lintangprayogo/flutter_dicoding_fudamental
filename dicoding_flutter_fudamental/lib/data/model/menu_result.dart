@@ -1,4 +1,4 @@
-import 'package:dicoding_flutter_fudamental/model/menu_item.dart';
+import 'package:dicoding_flutter_fudamental/data/model/menu_item.dart';
 
 class MenuResult {
   final List<MenuItem> foods;

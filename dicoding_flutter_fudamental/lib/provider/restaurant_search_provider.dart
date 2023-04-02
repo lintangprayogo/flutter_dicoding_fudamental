@@ -1,6 +1,5 @@
-import 'package:dicoding_flutter_fudamental/api/api_service.dart';
-import 'package:dicoding_flutter_fudamental/model/detail_restaurant_result.dart';
-import 'package:dicoding_flutter_fudamental/model/search_restaurant_result.dart';
+import 'package:dicoding_flutter_fudamental/data/api/api_service.dart';
+import 'package:dicoding_flutter_fudamental/data/model/search_restaurant_result.dart';
 import 'package:dicoding_flutter_fudamental/provider/result_state.dart';
 import 'package:flutter/widgets.dart';
 

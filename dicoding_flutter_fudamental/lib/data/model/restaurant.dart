@@ -1,4 +1,4 @@
-import 'package:dicoding_flutter_fudamental/model/menu_result.dart';
+import 'package:dicoding_flutter_fudamental/data/model/menu_result.dart';
 
 class Restaurant {
   final String id;
@@ -28,4 +28,15 @@ class Restaurant {
       menu: data['menus'] == null
           ? const MenuResult(foods: [], drinks: [])
           : MenuResult.fromJson(data['menus']));
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'pictureId': pictureId,
+      'city': city,
+      'rating': rating,
+      'description': description
+    };
+  }
 }

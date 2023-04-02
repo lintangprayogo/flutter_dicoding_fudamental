@@ -1,4 +1,4 @@
-import 'package:dicoding_flutter_fudamental/model/restaurant.dart';
+import 'package:dicoding_flutter_fudamental/data/model/restaurant.dart';
 
 class DetailRestaurantResult {
   final bool error;

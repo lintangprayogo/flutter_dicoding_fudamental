@@ -1,5 +1,5 @@
-import 'package:dicoding_flutter_fudamental/style/colors.dart';
-import 'package:dicoding_flutter_fudamental/style/font.dart';
+import 'package:dicoding_flutter_fudamental/common/colors.dart';
+import 'package:dicoding_flutter_fudamental/common/font.dart';
 import 'package:flutter/material.dart';
 
 class MenuListTile extends StatelessWidget {
